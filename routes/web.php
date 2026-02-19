@@ -6,6 +6,9 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/approaches', [App\Http\Controllers\ApproachController::class, 'index'])->name('approaches.index');
+
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');

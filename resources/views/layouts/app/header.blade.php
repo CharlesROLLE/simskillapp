@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
         <x-app-logo href="{{ route('dashboard') }}" wire:navigate />
 
         <flux:navbar class="-mb-px max-lg:hidden">
-            <flux:navbar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
+            <flux:navbar.item icon="home" :href="route('home')" :current="request()->routeIs('home')"
                 wire:navigate>
                 {{ __('Home') }}
             </flux:navbar.item>
-            <flux:navbar.item icon="paper-airplane" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
+            <flux:navbar.item icon="paper-airplane" href="{{ route('approaches.index') }}" :current="request()->routeIs('approaches.index')"
+                    wire:navigate>
                 {{ __('Approaches') }}
             </flux:navbar.item>
             <flux:navbar.item icon="book-open" href="https://github.com/ayyamperumal/simskillapp" target="_blank">
