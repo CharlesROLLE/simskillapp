@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Route;
                     wire:navigate>
                 {{ __('Approaches') }}
             </flux:navbar.item>
-            <flux:navbar.item icon="book-open" href="https://github.com/ayyamperumal/simskillapp" target="_blank">
+            <flux:navbar.item icon="book-open" href="{{ route('posts.index') }}" :current="request()->routeIs('posts.index')"
+                    wire:navigate>
                 {{ __('Blog') }}
             </flux:navbar.item>
             <flux:navbar.item icon="wrench-screwdriver" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
