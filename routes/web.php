@@ -9,6 +9,7 @@ Route::get('/', function () {
 Route::get('/approaches', [App\Http\Controllers\ApproachController::class, 'index'])->name('approaches.index');
 Route::get('/approaches/{approach}', [App\Http\Controllers\ApproachController::class, 'show'])->name('approaches.show');
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
