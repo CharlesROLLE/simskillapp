@@ -45,4 +45,19 @@ class Approach extends Model
     {
         return $this->hasMany(Chart::class);
     }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id')->latest();
+    }
+
+    public function allComments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
 }

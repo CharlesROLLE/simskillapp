@@ -71,6 +71,10 @@
                         @endforeach
                     </div>
                 @endif
+
+                <div class="border-t pt-8 mt-8">
+                    @livewire('approach-comments', ['approach' => $approach], key($approach->id))
+                </div>
             </div>
         </div>
 

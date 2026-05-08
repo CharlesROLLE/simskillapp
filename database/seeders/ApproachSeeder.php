@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Approach;
 use App\Models\Chart;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ApproachSeeder extends Seeder
@@ -22,10 +24,19 @@ class ApproachSeeder extends Seeder
             ['icao' => 'OMDB', 'name' => 'ILS 12R', 'country' => 'UAE', 'city' => 'Dubai'],
         ];
 
+        $user = User::where('email', 'test@example.com')->first();
+
         foreach ($airports as $airport) {
-            Approach::factory()
+            $approach = Approach::factory()
                 ->has(Chart::factory()->count(3), 'charts')
                 ->create($airport);
+
+            Comment::factory()
+                ->count(2)
+                ->create([
+                    'approach_id' => $approach->id,
+                    'user_id' => $user->id,
+                ]);
         }
     }
 }

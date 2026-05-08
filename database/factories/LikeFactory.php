@@ -1,0 +1,21 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Approach;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Like>
+ */
+class LikeFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            'approach_id' => Approach::factory(),
+            'user_id' => User::factory(),
+        ];
+    }
+}
