@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Approach;
 
 class ApproachController extends Controller
 {
     public function index()
     {
-        return view('approaches.index');
+        $approaches = Approach::with('charts')->get();
+
+        return view('approaches.index', compact('approaches'));
     }
 }

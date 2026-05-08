@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Approach;
+use App\Models\Chart;
 use Illuminate\Database\Seeder;
 
 class ApproachSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        Approach::factory(9)
+            ->has(Chart::factory()->count(3), 'charts')
+            ->create();
     }
 }
