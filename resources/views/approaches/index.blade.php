@@ -24,7 +24,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
             @foreach ($approaches as $approach)
                 <div class="rounded overflow-hidden shadow-lg flex flex-col">
-                    <div class="relative">
+                    <a href="{{ route('approaches.show', $approach) }}" class="relative block">
                         <img class="w-full h-48 object-cover"
                             src="{{ $approach->image }}"
                             alt="{{ $approach->icao }}">
@@ -32,7 +32,7 @@
                         <div class="text-xs absolute top-0 right-0 bg-indigo-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
                             {{ $approach->icao }}
                         </div>
-                    </div>
+                    </a>
                     <div class="px-6 py-4 mb-auto">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="font-bold text-lg">{{ $approach->name }}</span>

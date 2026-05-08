@@ -12,4 +12,11 @@ class ApproachController extends Controller
 
         return view('approaches.index', compact('approaches'));
     }
+
+    public function show(Approach $approach)
+    {
+        $approach->load('charts');
+
+        return view('approaches.show', compact('approach'));
+    }
 }

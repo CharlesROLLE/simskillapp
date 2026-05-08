@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Approach extends Model
 {
@@ -19,7 +20,26 @@ class Approach extends Model
         'extract',
         'description',
         'image',
+        'slug',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (Approach $approach) {
+            $approach->slug = Str::slug($approach->icao.'-'.$approach->name);
+        });
+
+        static::updating(function (Approach $approach) {
+            if ($approach->isDirty(['icao', 'name'])) {
+                $approach->slug = Str::slug($approach->icao.'-'.$approach->name);
+            }
+        });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     public function charts(): HasMany
     {
