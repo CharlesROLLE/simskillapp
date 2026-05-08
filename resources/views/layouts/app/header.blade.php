@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 ?>
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-bind:class="($flux.appearance == 'dark' || ($flux.appearance == 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : ''">
 
 <head>
     @include('partials.head')
