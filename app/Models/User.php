@@ -68,4 +68,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(PostLike::class);
     }
+
+    public function vrtools(): HasMany
+    {
+        return $this->hasMany(Vrtool::class);
+    }
+
+    public function vrtoolComments(): HasMany
+    {
+        return $this->hasMany(VrtoolComment::class);
+    }
+
+    public function vrtoolLikes(): HasMany
+    {
+        return $this->hasMany(VrtoolLike::class);
+    }
 }

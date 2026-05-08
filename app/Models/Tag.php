@@ -34,4 +34,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class);
     }
+
+    public function vrtools(): BelongsToMany
+    {
+        return $this->belongsToMany(Vrtool::class, 'vrtool_tag');
+    }
 }

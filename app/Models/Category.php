@@ -34,4 +34,9 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function vrtools(): HasMany
+    {
+        return $this->hasMany(Vrtool::class);
+    }
 }

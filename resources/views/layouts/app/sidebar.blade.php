@@ -11,8 +11,23 @@
             </flux:sidebar.header>
 
             <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                <flux:sidebar.group :heading="__('Navigation')" class="grid">
+                    <flux:sidebar.item icon="home" :href="route('home')" :current="request()->routeIs('home')" wire:navigate>
+                        {{ __('Home') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="paper-airplane" :href="route('approaches.index')" :current="request()->routeIs('approaches.*')" wire:navigate>
+                        {{ __('Approaches') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="book-open" :href="route('posts.index')" :current="request()->routeIs('posts.*')" wire:navigate>
+                        {{ __('Blog') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="wrench-screwdriver" :href="route('vrtools.index')" :current="request()->routeIs('vrtools.*')" wire:navigate>
+                        {{ __('VR-Tools') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="rectangle-group" :href="route('about')" wire:navigate>
+                        {{ __('About') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>

@@ -27,13 +27,13 @@ use Illuminate\Support\Facades\Route;
                     wire:navigate>
                 {{ __('Blog') }}
             </flux:navbar.item>
-            <flux:navbar.item icon="wrench-screwdriver" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
+            <flux:navbar.item icon="wrench-screwdriver" href="{{ route('vrtools.index') }}" :current="request()->routeIs('vrtools.*')"
                 wire:navigate>
                 {{ __('VR-Tools') }}
             </flux:navbar.item>
-            <flux:navbar.item icon="rectangle-group" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
+            <flux:navbar.item icon="rectangle-group" href="{{ route('about') }}" wire:navigate>
                 {{ __('About') }}
-            </flux:navbar.item> 
+            </flux:navbar.item>
 
 
         </flux:navbar>
@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Route;
                 <flux:navbar class="-mb-px max-lg:hidden">
                     <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                         wire:navigate>
-                        {{ __('Blog') }}
+                        {{ __('Dashboard') }}
                     </flux:navbar.item>
                 </flux:navbar>
             @else
@@ -79,26 +79,37 @@ use Illuminate\Support\Facades\Route;
         </flux:sidebar.header>
 
         <flux:sidebar.nav>
-            <flux:sidebar.group :heading="__('Platform')">
-                <flux:sidebar.item icon="layout-grid" :href="route('dashboard')"
-                    :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard')  }}
+            <flux:sidebar.group :heading="__('Navigation')">
+                <flux:sidebar.item icon="home" :href="route('home')"
+                    :current="request()->routeIs('home')" wire:navigate>
+                    {{ __('Home') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="paper-airplane" :href="route('approaches.index')"
+                    :current="request()->routeIs('approaches.*')" wire:navigate>
+                    {{ __('Approaches') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="book-open" :href="route('posts.index')"
+                    :current="request()->routeIs('posts.*')" wire:navigate>
+                    {{ __('Blog') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="wrench-screwdriver" :href="route('vrtools.index')"
+                    :current="request()->routeIs('vrtools.*')" wire:navigate>
+                    {{ __('VR-Tools') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="rectangle-group" :href="route('about')" wire:navigate>
+                    {{ __('About') }}
                 </flux:sidebar.item>
             </flux:sidebar.group>
         </flux:sidebar.nav>
 
-        <flux:spacer />
-
-        <flux:sidebar.nav>
-            <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit"
-                target="_blank">
-                {{ __('Repository') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire"
-                target="_blank">
-                {{ __('Documentation') }}
-            </flux:sidebar.item>
-        </flux:sidebar.nav>
+        @auth
+            <flux:sidebar.nav>
+                <flux:sidebar.item icon="layout-grid" :href="route('dashboard')"
+                    :current="request()->routeIs('dashboard')" wire:navigate>
+                    {{ __('Dashboard') }}
+                </flux:sidebar.item>
+            </flux:sidebar.nav>
+        @endauth
     </flux:sidebar>
 
     {{ $slot }}
