@@ -78,9 +78,9 @@
             <button class="px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-xl font-bold transition-transform active:scale-95">
                             Fly Now
                         </button>
-            <button class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-xl font-bold transition">
+            <a href="{{ route('about') }}" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-xl font-bold transition inline-block">
                             More Info
-                        </button>
+                        </a>
           </div>
         </div>
 
@@ -111,6 +111,7 @@
         <p class="text-gray-400 mt-2">Handpicked approaches by Radiosabines</p>
       </div>
       <a href="https://flightsimcoach.com/blog/best-flight-simulators/"
+        target="_blank" rel="noopener noreferrer"
         class="text-purple-400 font-bold hover:text-purple-300 transition flex items-center gap-2">
           Best Flight Simulators
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -128,13 +129,15 @@
         </div>
         <div class="p-5">
           <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest">Simulation</span>
-          <h3 class="text-xl font-bold mt-1">FS2024 - FS2020 - X PLANE 12</h3>
+          <h3 class="text-xl font-bold mt-1">
+            <a href="{{ route('approaches.index') }}" class="hover:text-purple-400 transition-colors">FS2024 - FS2020 - X PLANE 12</a>
+          </h3>
           <p class="text-gray-500 text-sm mt-2 line-clamp-2">A selection of high-skill landings procedures.
             for your favorite flight simulators.
             </p>
 
 
-          <button class="w-full mt-4 py-2 bg-white/5 hover:bg-purple-600 rounded-lg text-sm font-bold transition-colors">More Info</button>
+          <a href="{{ route('about') }}" class="w-full mt-4 py-2 bg-white/5 hover:bg-purple-600 rounded-lg text-sm font-bold transition-colors block text-center">More Info</a>
         </div>
       </div>
 
@@ -145,10 +148,12 @@
         </div>
         <div class="p-5">
           <span class="text-[10px] text-pink-500 font-bold uppercase tracking-widest">Blog</span>
-          <h3 class="text-xl font-bold mt-1">Share your experience</h3>
+          <h3 class="text-xl font-bold mt-1">
+            <a href="{{ route('posts.index') }}" class="hover:text-purple-400 transition-colors">Share your experience</a>
+          </h3>
           <p class="text-gray-500 text-sm mt-2 line-clamp-2">Tell us about your approaches, add images, video, comments.
           </p>
-          <button class="w-full mt-4 py-2 bg-white/5 hover:bg-purple-600 rounded-lg text-sm font-bold transition-colors">More Info</button>
+          <a href="{{ route('about') }}" class="w-full mt-4 py-2 bg-white/5 hover:bg-purple-600 rounded-lg text-sm font-bold transition-colors block text-center">More Info</a>
         </div>
       </div>
 
@@ -159,10 +164,12 @@
         </div>
         <div class="p-5">
           <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">VR Infos</span>
-          <h3 class="text-xl font-bold mt-1">Latest informations</h3>
+          <h3 class="text-xl font-bold mt-1">
+            <a href="{{ route('vrtools.index') }}" class="hover:text-purple-400 transition-colors">Latest informations</a>
+          </h3>
           <p class="text-gray-500 text-sm mt-2 line-clamp-2">Explore a vast vr world,  configurations, tools, plugings, hardwares.
           </p>
-          <button class="w-full mt-4 py-2 bg-white/5 hover:bg-purple-600 rounded-lg text-sm font-bold transition-colors">More Info</button>
+          <a href="{{ route('about') }}" class="w-full mt-4 py-2 bg-white/5 hover:bg-purple-600 rounded-lg text-sm font-bold transition-colors block text-center">More Info</a>
         </div>
       </div>
 
@@ -176,7 +183,7 @@
           <h3 class="text-xl font-bold mt-1">Admin Panel</h3>
           <p class="text-gray-500 text-sm mt-2 line-clamp-2"> Manage all aspects of your Web App experience with our intuitive admin panel.
             support.</p>
-          <button class="w-full mt-4 py-2 bg-white/5 hover:bg-purple-600 rounded-lg text-sm font-bold transition-colors">More Info</button>
+          <a href="{{ route('about') }}" class="w-full mt-4 py-2 bg-white/5 hover:bg-purple-600 rounded-lg text-sm font-bold transition-colors block text-center">More Info</a>
         </div>
       </div>
 
