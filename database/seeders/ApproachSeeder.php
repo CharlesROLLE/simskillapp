@@ -24,7 +24,7 @@ class ApproachSeeder extends Seeder
             ['icao' => 'OMDB', 'name' => 'ILS 12R', 'country' => 'UAE', 'city' => 'Dubai'],
         ];
 
-        $user = User::where('email', 'test@example.com')->first();
+        $user = User::where('email', 'super@test.com')->first();
 
         foreach ($airports as $airport) {
             $approach = Approach::factory()

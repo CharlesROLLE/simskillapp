@@ -23,7 +23,7 @@ class PostSeeder extends Seeder
             $tags->push(Tag::create(['name' => $name]));
         }
 
-        $user = User::where('email', 'test@example.com')->first();
+        $user = User::where('email', 'super@test.com')->first();
 
         $posts = Post::factory(9)
             ->recycle($categories)

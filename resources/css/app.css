@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
+@import 'trix/dist/trix.css';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -64,3 +65,52 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+.trix-content {
+    @apply bg-white dark:bg-zinc-800 rounded-lg;
+}
+
+.trix-button-row {
+    @apply flex flex-wrap gap-1;
+}
+
+trix-toolbar .trix-button-group {
+    @apply border-zinc-200 dark:border-zinc-600;
+}
+
+.dark trix-toolbar {
+    background-color: #1a1a1a;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0.5rem;
+}
+
+.dark trix-toolbar .trix-button {
+    color: #d4d4d4;
+    border-left-color: #404040;
+}
+
+.dark trix-toolbar .trix-button.trix-active {
+    background: #2d2d2d;
+    color: #ffffff;
+}
+
+.dark trix-toolbar .trix-button--icon::before {
+    filter: invert(1);
+}
+
+.dark trix-toolbar .trix-button:disabled.trix-button--icon::before {
+    opacity: 0.3;
+}
+
+trix-editor {
+    @apply border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-gray-900 dark:text-gray-100 rounded-b-lg;
+    min-height: 200px;
+}
+
+trix-editor:focus {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+.dark trix-editor [data-trix-attachment] figcaption {
+    @apply text-gray-300;
+}

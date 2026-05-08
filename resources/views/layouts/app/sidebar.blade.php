@@ -15,22 +15,58 @@
                     <flux:sidebar.item icon="home" :href="route('home')" :current="request()->routeIs('home')" wire:navigate>
                         {{ __('Home') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="paper-airplane" :href="route('approaches.index')" :current="request()->routeIs('approaches.*')" wire:navigate>
-                        {{ __('Approaches') }}
-                    </flux:sidebar.item>
-                    <flux:sidebar.item icon="book-open" :href="route('posts.index')" :current="request()->routeIs('posts.*')" wire:navigate>
-                        {{ __('Blog') }}
-                    </flux:sidebar.item>
-                    <flux:sidebar.item icon="wrench-screwdriver" :href="route('vrtools.index')" :current="request()->routeIs('vrtools.*')" wire:navigate>
-                        {{ __('VR-Tools') }}
-                    </flux:sidebar.item>
-                    <flux:sidebar.item icon="rectangle-group" :href="route('about')" wire:navigate>
-                        {{ __('About') }}
-                    </flux:sidebar.item>
+
+                    @can('manage-approaches')
+                        <flux:sidebar.item icon="paper-airplane" :href="route('admin.approaches.index')" :current="request()->routeIs('admin.approaches.*')" wire:navigate>
+                            {{ __('Approaches') }}
+                        </flux:sidebar.item>
+                    @else
+                        <flux:sidebar.item icon="paper-airplane" :href="route('approaches.index')" :current="request()->routeIs('approaches.*')" wire:navigate>
+                            {{ __('Approaches') }}
+                        </flux:sidebar.item>
+                    @endcan
+
+                    @can('manage-posts')
+                        <flux:sidebar.item icon="book-open" :href="route('admin.posts.index')" :current="request()->routeIs('admin.posts.*')" wire:navigate>
+                            {{ __('Blog') }}
+                        </flux:sidebar.item>
+                    @else
+                        <flux:sidebar.item icon="book-open" :href="route('posts.index')" :current="request()->routeIs('posts.*')" wire:navigate>
+                            {{ __('Blog') }}
+                        </flux:sidebar.item>
+                    @endcan
+
+                    @can('manage-vrtools')
+                        <flux:sidebar.item icon="wrench-screwdriver" :href="route('admin.vrtools.index')" :current="request()->routeIs('admin.vrtools.*')" wire:navigate>
+                            {{ __('VR-Tools') }}
+                        </flux:sidebar.item>
+                    @else
+                        <flux:sidebar.item icon="wrench-screwdriver" :href="route('vrtools.index')" :current="request()->routeIs('vrtools.*')" wire:navigate>
+                            {{ __('VR-Tools') }}
+                        </flux:sidebar.item>
+                    @endcan
+
+                    @can('manage-approaches')
+                    @else
+                        <flux:sidebar.item icon="rectangle-group" :href="route('about')" wire:navigate>
+                            {{ __('About') }}
+                        </flux:sidebar.item>
+                    @endcan
                     <flux:sidebar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
+
+                @can('manage-users')
+                    <flux:sidebar.group :heading="__('Admin')" class="grid">
+                        <flux:sidebar.item icon="users" :href="route('admin.users.index')" :current="request()->routeIs('admin.users.*')" wire:navigate>
+                            {{ __('Users') }}
+                        </flux:sidebar.item>
+                        <flux:sidebar.item icon="rectangle-group" :href="route('admin.pages.edit', 'about')" :current="request()->routeIs('admin.pages.*')" wire:navigate>
+                            {{ __('About') }}
+                        </flux:sidebar.item>
+                    </flux:sidebar.group>
+                @endcan
             </flux:sidebar.nav>
 
             <flux:spacer />

@@ -23,7 +23,7 @@ class VrtoolSeeder extends Seeder
             $tags->push(Tag::firstOrCreate(['name' => $name]));
         }
 
-        $user = User::where('email', 'test@example.com')->first();
+        $user = User::where('email', 'super@test.com')->first();
 
         $vrtools = Vrtool::factory(8)
             ->recycle($categories)
