@@ -199,15 +199,15 @@
                 rating: "9.8 / 10"
             },
             {
-                title: "NEON DRIFT",
-                desc: "Race through the digital skylines of tomorrow. A multiplayer experience built for the modern web browser.",
-                img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2000&auto=format&fit=crop",
+                title: "DCS",
+                desc: "DCS World is a study sim in which players learn how to operate aircraft using realistic procedures. Aircraft are meticulously modeled from real-world data.",
+                img: "{{ asset('images/dcs-5.png') }}",
                 rating: "9.5 / 10"
             },
             {
-                title: "VOID QUEST",
-                desc: "Explore deep space anomalies in this stunning 3D adventure. No downloads, just pure exploration.",
-                img: "https://images.unsplash.com/photo-1618193139062-2c5bf4f935b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxnYW1lcyUyMG9ubGluZXxlbnwwfDF8fHwxNzY3NTM1ODQzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+                title: "A-4E Skyhawk",
+                desc: "The A-4 was a cold war workhorse which proved to be a capable, reliable light attack aircraft to dozens of nations around the world.",
+                img: "{{ asset('images/a4-1.png') }}",
                 rating: "10 / 10"
             }
         ];

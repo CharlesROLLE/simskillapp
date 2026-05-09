@@ -5,38 +5,48 @@ use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Rule as LivewireRule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 new class extends Component {
-    use ProfileValidationRules;
+    use ProfileValidationRules, WithFileUploads;
 
     public string $name = '';
     public string $email = '';
 
-    /**
-     * Mount the component.
-     */
+    #[LivewireRule(['avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024']])]
+    public $avatar = null;
+
     public function mount(): void
     {
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
     }
 
-    /**
-     * Update the profile information for the currently authenticated user.
-     */
     public function updateProfileInformation(): void
     {
         $user = Auth::user();
 
         $validated = $this->validate($this->profileRules($user->id));
 
+        $this->validateOnly('avatar');
+
         $user->fill($validated);
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
+        }
+
+        if ($this->avatar) {
+            if ($user->avatar) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+
+            $user->avatar = $this->avatar->store('avatars', 'public');
         }
 
         $user->save();
@@ -83,6 +93,29 @@ new class extends Component {
 
     <x-pages::settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
+            <div class="flex items-center gap-6">
+                <flux:avatar
+                    :name="auth()->user()->name"
+                    :initials="auth()->user()->initials()"
+                    :src="$avatar?->temporaryUrl() ?? auth()->user()->avatarUrl()"
+                    class="size-20"
+                />
+
+                <div>
+                    <flux:field>
+                        <flux:label>{{ __('Avatar') }}</flux:label>
+                        <input
+                            type="file"
+                            wire:model="avatar"
+                            accept="image/jpeg,image/png"
+                            class="block w-full text-sm text-zinc-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-zinc-100 file:text-zinc-700 dark:file:bg-zinc-700 dark:file:text-zinc-300 hover:file:bg-zinc-200 dark:hover:file:bg-zinc-600"
+                        />
+                        <flux:error name="avatar" />
+                        <flux:text class="mt-1">{{ __('JPG or PNG, max 1MB.') }}</flux:text>
+                    </flux:field>
+                </div>
+            </div>
+
             <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
 
             <div>

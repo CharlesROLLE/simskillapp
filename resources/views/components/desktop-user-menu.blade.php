@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Route;
 
         @auth
             <flux:sidebar.profile :name="auth()->user()->name" :initials="auth()->user()->initials()"
-                icon:trailing="chevrons-up-down" data-test="sidebar-menu-button" />
+                :src="auth()->user()->avatarUrl()" icon:trailing="chevrons-up-down" data-test="sidebar-menu-button" />
 
             <flux:menu>
                 <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                    <flux:avatar :name="auth()->user()->name" :initials="auth()->user()->initials()" />
+                    <flux:avatar :name="auth()->user()->name" :initials="auth()->user()->initials()" :src="auth()->user()->avatarUrl()" />
                     <div class="grid flex-1 text-start text-sm leading-tight">
                         <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
                         <flux:text class="truncate">{{ auth()->user()->email }}</flux:text>
