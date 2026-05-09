@@ -33,11 +33,13 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'category_id' => ['required', 'exists:categories,id'],
             'body' => ['required', 'string'],
-            'image' => ['required', 'string', 'max:2048'],
-            'published_at' => ['nullable', 'date'],
-            'tags' => ['nullable', 'array'],
-            'tags.*' => ['exists:tags,id'],
+            'image' => ['required', 'image', 'mimes:jpeg,png', 'max:2048'],
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('uploads', 'public');
+            $data['image'] = asset('storage/'.$path);
+        }
 
         $data['user_id'] = auth()->id();
 
@@ -65,11 +67,16 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'category_id' => ['required', 'exists:categories,id'],
             'body' => ['required', 'string'],
-            'image' => ['required', 'string', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png', 'max:2048'],
             'published_at' => ['nullable', 'date'],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['exists:tags,id'],
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('uploads', 'public');
+            $data['image'] = asset('storage/'.$path);
+        }
 
         $post->update($data);
 

@@ -10,17 +10,19 @@ class RoleAndPermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        Permission::create(['name' => 'manage-users']);
-        Permission::create(['name' => 'manage-approaches']);
-        Permission::create(['name' => 'manage-posts']);
-        Permission::create(['name' => 'manage-vrtools']);
+        Permission::firstOrCreate(['name' => 'manage-users']);
+        Permission::firstOrCreate(['name' => 'manage-approaches']);
+        Permission::firstOrCreate(['name' => 'manage-posts']);
+        Permission::firstOrCreate(['name' => 'manage-vrtools']);
+        Permission::firstOrCreate(['name' => 'manage-categories']);
 
-        $superAdmin = Role::create(['name' => 'super-admin']);
+        $superAdmin = Role::firstOrCreate(['name' => 'super-admin']);
         $superAdmin->givePermissionTo(Permission::all());
 
-        $admin = Role::create(['name' => 'admin']);
-        $admin->givePermissionTo(['manage-approaches', 'manage-posts', 'manage-vrtools']);
+        $admin = Role::firstOrCreate(['name' => 'admin']);
+        $admin->givePermissionTo(['manage-approaches', 'manage-posts', 'manage-vrtools', 'manage-categories']);
 
-        Role::create(['name' => 'writer']);
+        $writer = Role::firstOrCreate(['name' => 'writer']);
+        $writer->givePermissionTo(['manage-posts', 'manage-vrtools']);
     }
 }

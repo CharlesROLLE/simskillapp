@@ -44,7 +44,7 @@
                 @endif
 
                 <div class="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 leading-relaxed">
-                    {{ $vrtool->body }}
+                    {!! $vrtool->body !!}
                 </div>
 
                 <div class="border-t pt-8 mt-8">

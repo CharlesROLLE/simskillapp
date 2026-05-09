@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-white dark:bg-zinc-800 flex flex-col">
+<body class="min-h-screen bg-white dark:bg-zinc-800">
     <flux:header container class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.toggle class="lg:hidden mr-2" icon="bars-2" inset="left" />
 
@@ -112,11 +112,7 @@ use Illuminate\Support\Facades\Route;
         @endauth
     </flux:sidebar>
 
-    <div class="flex-1 flex flex-col">
-        {{ $slot }}
-
-        @include('partials.footer')
-    </div>
+    {{ $slot }}
 
     @fluxScripts
 </body>

@@ -26,7 +26,7 @@
                 </div>
 
                 <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
-                    {{ $approach->description }}
+                    {!! $approach->description !!}
                 </p>
 
                 @if ($approach->charts->isNotEmpty())

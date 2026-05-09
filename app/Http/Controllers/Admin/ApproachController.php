@@ -31,8 +31,13 @@ class ApproachController extends Controller
             'city' => ['required', 'string', 'max:255'],
             'extract' => ['required', 'string', 'max:500'],
             'description' => ['required', 'string'],
-            'image' => ['required', 'string', 'max:2048'],
+            'image' => ['required', 'image', 'mimes:jpeg,png', 'max:2048'],
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('uploads', 'public');
+            $data['image'] = asset('storage/'.$path);
+        }
 
         $data['user_id'] = auth()->id();
 
@@ -43,6 +48,8 @@ class ApproachController extends Controller
 
     public function edit(Approach $approach): View
     {
+        $approach->load('charts');
+
         return view('admin.approaches.edit', compact('approach'));
     }
 
@@ -55,8 +62,13 @@ class ApproachController extends Controller
             'city' => ['required', 'string', 'max:255'],
             'extract' => ['required', 'string', 'max:500'],
             'description' => ['required', 'string'],
-            'image' => ['required', 'string', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png', 'max:2048'],
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('uploads', 'public');
+            $data['image'] = asset('storage/'.$path);
+        }
 
         $approach->update($data);
 
